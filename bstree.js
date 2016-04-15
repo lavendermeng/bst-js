@@ -1,6 +1,3 @@
-/**
- * Created by cmeng on 4/14/16.
- */
 (function(){
   var BSTree = {
     root: null,
@@ -54,18 +51,45 @@
       }
       return node.data;
     },
+    maxNumber: function(node){
+      var t = this;
+      if(!node){
+        return 0;
+      }
+      if(node.right){
+        return t.minNumber(node.right);
+      }
+      return node.data;
+    },
     depth: function(node){
       var t = this;
       if(!node){
-        console.log("empty");
         return 0;
       }else{
-        console.log(node.data);
         var a = t.depth(node.left);
-        console.log("a = " + a);
         var b = t.depth(node.right);
-        console.log("b = " + b);
         return (a > b) ? (a+1):(b+1);
+      }
+    },
+    inorder: function(node){
+      if(node){
+        inorder(node.left);
+        console.log(node.data);
+        inorder(node.right);
+      }
+    },
+    preorder: function(node){
+      if(node){
+        console.log(node.data);
+        preorder(node.left);
+        preorder(node.right);
+      }
+    },
+    postorder: function(node){
+      if(node){
+        postorder(node.left);
+        postorder(node.right);
+        console.log(node.data);
       }
     }
   };
